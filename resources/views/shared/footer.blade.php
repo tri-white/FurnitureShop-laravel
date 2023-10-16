@@ -5,7 +5,7 @@
             <a
               class="btn text-white btn-floating m-1"
               style="background-color: #333333;"
-              href="https://github.com/tri-white/trunin-blog-laravel"
+              href="https://github.com/tri-white/FurnitureShop-laravel"
               target="_blank"
               role="button"
               ><i class="fab fa-github"></i
@@ -13,8 +13,8 @@
           </section>
         </div>
     <!-- Назва та дані сайту-->
-    <div class="text-center p-3 bg-primary">
+    <div class="text-center p-3 bg-success">
           © 2023
-          <a class="text-white" href="/">Trunin-blog</a>
+          <a class="text-white" href="#top">Furni</a>
         </div>
   </footer>
