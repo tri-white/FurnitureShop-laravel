@@ -3,7 +3,7 @@
 
     @endpush
 @section('content')
-  
+  <h1> hi </h1>
 @endsection
 
 @push('js')
