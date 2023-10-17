@@ -31,6 +31,7 @@
 					<div class="row d-flex justify-content-center">
 						<div class="col-lg-8 col-md-10 col-sm-12 text-center">
 							<form method="post" action="{{ route('search-shop') }}">
+							@csrf
 								<div class="input-group">
 									<input value="hi" name="search-input-key" type="search"
 										class="px-3 form-control" placeholder="Пошук..." aria-label="Search"
@@ -43,7 +44,9 @@
 											class="form-select" aria-label="Категорія" style="width:100%;">
 											<option value="all">Всі
 												категорії</option>
-											
+											@foreach($categories as $category)
+												<option value="{{$category->name}}">{{ $category->name }}</option>
+											@endforeach
 										</select>
 									</div>
 									<div class="col-lg-6">
@@ -79,7 +82,7 @@
     $currentPageProducts = array_slice($productsArray, $startIndex, $productsPerPage);
 @endphp
 
-    @if (!$currentPageProducts){
+    @if (!$currentPageProducts)
         <div class='mb-5 text-muted col-lg-12 text-center display-4'>
         Не знайдено продуктів
         </div>

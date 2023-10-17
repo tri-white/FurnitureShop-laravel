@@ -18,7 +18,7 @@
               </li>
               @if(Auth::check())
               <li class="nav-item mx-lg-2 mx-md-1 mx-sm-0">
-                <a class="nav-link text-light" href="{{ route('add-product') }}">Додати аcортимент</a>
+                <a class="nav-link text-light" href="{{ route('add-product-page') }}">Додати аcортимент</a>
               </li>
               
               <li class="nav-item mx-lg-2 mx-md-1 mx-sm-0">
