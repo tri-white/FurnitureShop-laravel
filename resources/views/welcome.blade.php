@@ -50,7 +50,7 @@
 							@if($i>3) 
                                 @break 
                             @endif
-							@include("cards/item-index");
+							@include("cards/item-index")
                             @php
 							    $i=$i+1;
                             @endphp

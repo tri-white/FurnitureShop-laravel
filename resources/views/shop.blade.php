@@ -81,7 +81,7 @@
         </div>
     @else 
         @foreach($currentPageProducts as $currentPageProduct) 
-            @include("cards/shop-product");
+            @include("cards/shop-product")
         @endforeach
     @endif
 	<nav aria-label="Page navigation example">
