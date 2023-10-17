@@ -21,7 +21,7 @@
                     @csrf
                     <div class="mb-3">
                         <label for="loginInput" class="form-label">Логін</label>
-                        <input value="{{ old('login') }}" name="login" type="text" class="form-control" id="loginInput" required>
+                        <input value="{{ old('username') }}" name="username" type="text" class="form-control" id="loginInput" required>
                     </div>
                     <div class="mb-3">
                         <label for="passwordInput" class="form-label">Пароль</label>

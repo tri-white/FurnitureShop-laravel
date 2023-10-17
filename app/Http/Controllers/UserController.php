@@ -31,12 +31,12 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'login' => 'required|string',
+            'username' => 'required|string',
             'password' => 'required|string',
         ]);
         
         $credentials = [
-            'login' => $request->input('login'),
+            'username' => $request->input('username'),
             'password' => $request->input('password'),
         ];
     
@@ -48,18 +48,18 @@ class UserController extends Controller
     public function registration(Request $request)
     {
         $request->validate([
-            'login' => 'required|string|max:255',
+            'username' => 'required|string|max:255',
             'password' => 'required|string|min:8',
             'password2' => 'required|string|same:password',
         ]);
         
-        $existingUser = User::where('login', $request->input('login'))->first();
+        $existingUser = User::where('username', $request->input('username'))->first();
         if ($existingUser) {
             return redirect()->back()->with('existing-user', 'Користувач з таким логіном вже існує.');
         }
 
         $user = new User();
-        $user->login = $request->input('login');
+        $user->username = $request->input('username');
         $user->password = bcrypt($request->input('password'));
         $user->save();
 
@@ -74,9 +74,15 @@ class UserController extends Controller
 
         $user = User::where('id',$userid)->first();
 
-        $user->login = $request->input('editedLogin');
+        $user->username = $request->input('editedLogin');
         $user->save();
 
         return redirect()->back()->with('success', 'Успішно змінено логін');
+    }
+    public function cart(){
+        return redirect()->back();
+    }
+    public function wishlish(){
+        return redirect()->back();
     }
 }
