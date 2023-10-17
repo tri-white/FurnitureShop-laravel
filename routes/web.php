@@ -31,7 +31,7 @@ Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 Route::post('/login', [UserController::class, 'login'])->name('login');
 Route::post('/registration', [UserController::class, 'registration'])->name('registration');
 
-Route::get('/shop', [ShopController::class, 'index'])->name('shop');
+Route::get('/shop/page={page}', [ShopController::class, 'index'])->name('shop');
 Route::get('/add-product', [ShopController::class, 'addView'])->name('add-product-page');
 Route::post('/add-product', [ShopController::class, 'add'])->name('add-product');
 Route::get('/search-product', [ShopController::class, 'search'])->name('search-shop');

@@ -73,41 +73,28 @@
 					</div>
 				</div>
 				<div class="row">
-@php
-    $productsPerPage = 4;
-    $totalPages = ceil($products->count() / $productsPerPage);
-    $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
-    $startIndex = ($currentPage - 1) * $productsPerPage;
-    $productsArray = $products->toArray();
-    $currentPageProducts = array_slice($productsArray, $startIndex, $productsPerPage);
-@endphp
+
 
     @if (!$currentPageProducts)
         <div class='mb-5 text-muted col-lg-12 text-center display-4'>
         Не знайдено продуктів
         </div>
     @else 
-        @foreach($currentPageProducts as $row) 
-        @php
-            $user_class = new User();
-            $product_class = new Product();
-            $row_user = $user_class->get_data($row['id']);
-            $row_product = $product_class->get_data($row['id']);
-            @endphp
-            @include("shop-product.php");
+        @foreach($currentPageProducts as $currentPageProduct) 
+            @include("cards/shop-product");
         @endforeach
     @endif
-					<nav aria-label="Page navigation example">
-						<ul class="pagination justify-content-center">
-@if($products)
-	@for ($page = 1; $page <= $totalPages; $page++)
-		<li class='page-item" . ($page == $currentPage ? " active" : "") . "'>
-		<a class='page-link' href='?page=$page'>{{ $page }}</a>
-		</li>
-    @endfor
-@endif
-						</ul>
-					</nav>
+	<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+
+            @for ($page = 1; $page <= $totalPages; $page++)
+                <li class="page-item{{ $page == $currentPage ? ' active' : '' }}">
+                    <a class="page-link" href="{{ route('shop', ['page' => $page]) }}">{{ $page }}</a>
+                </li>
+            @endfor
+    </ul>
+</nav>
+
 
 
  

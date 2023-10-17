@@ -14,8 +14,9 @@
                 <a class="nav-link text-light" href="{{ route('welcome') }}">Головна</a>
               </li>
               <li class="nav-item mx-lg-2 mx-md-1 mx-sm-0">
-                <a class="nav-link text-light" href="{{ route('shop') }}">Асортимент</a>
-              </li>
+                <a class="nav-link text-light" href="{{ route('shop', ['page' => 1]) }}">Асортимент</a>
+            </li>
+
               @if(Auth::check())
               <li class="nav-item mx-lg-2 mx-md-1 mx-sm-0">
                 <a class="nav-link text-light" href="{{ route('add-product-page') }}">Додати аcортимент</a>
