@@ -11,7 +11,7 @@
   <div class="container mt-5">
     <div class="row">
       <div class="col-lg-6">
-        <img src="{{ asset('images/cross.svg') }}" style="max-width:100%;">
+        <img src="{{ asset('storage/'.$product->photo) }}" style="max-width:100%;">
       </div>
       <div class="col-lg-6">
         <div class="col-lg-12 fs-5 fw-bold ps-3 mt-2">
