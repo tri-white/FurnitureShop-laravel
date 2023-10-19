@@ -11,4 +11,24 @@ class ProductController extends Controller
         $product = Product::where('id',$id)->first();
         return view('cards/product-details', ['product'=>$product, 'comms'=>$product->comments()]);
     }
+    public function add(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name-prod' => 'required|string',
+            'price' => 'required|numeric',
+            'image' => 'required|image|mimes:jpeg,png,jpg',
+            'category' => 'required|string',
+        ]);
+
+        $imagePath = $request->file('image')->store('products');
+
+        $product = new Product;
+        $product->name = $validatedData['name-prod'];
+        $product->price = $validatedData['price'];
+        $product->photo = $imagePath;
+        $product->category_id = $validatedData['category'];
+        $product->save();
+
+        return redirect()->back()->with('success','Успішно додано новий предмет в асортимент');
+    }
 }

@@ -3,6 +3,11 @@
 
     @endpush
 @section('content')
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
   <div class="container mt-5">
     <div class="row">
       <div class="col-lg-6">
@@ -49,14 +54,14 @@
       <!-- YOUR COMMENT -->
       @if(Auth::check())
       <div class="card-body">
-        <form method="POST" action="" autocomplete="off">
-            @csrf
-          <div class="input-group align-items-center">
-            <input name="description" type="text" class="form-control" placeholder="Ваш відгук"
-              aria-label="Add a comment" aria-describedby="comment-button">
+      <form method="POST" action="{{ route('add-comment', ['userid' => Auth::user()->id, 'productid' => $product->id]) }}" autocomplete="off">
+        @csrf
+        <div class="input-group align-items-center">
+            <input name="description" type="text" class="form-control" placeholder="Ваш відгук" aria-label="Add a comment" aria-describedby="comment-button">
             <button class="btn btn-success" type="submit" id="comment-button">Додати відгук</button>
-          </div>
-        </form>
+        </div>
+    </form>
+
       </div>
       @endif
       <!-- END YOUR COMMENT -->
