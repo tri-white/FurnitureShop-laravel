@@ -19,7 +19,7 @@
         <div class="col-lg-12 mt-3 d-flex">
           <form method="POST">
             <div class="col-lg-5 ps-3 d-inline">
-              <input id="quant" type="number" name="quantity" step="1" required>
+              <input id="quant" type="number" name="quantity" step="1" value="0" required> шт.
             </div>
             <div class="col-lg-3 ps-3 d-inline">
               <button class="p-2" type="submit"><i class="fa fa-shopping-cart"></i></a>
@@ -81,4 +81,15 @@
   @endsection
 
 @push('js')
+<script>
+  const inputElement = document.getElementById('quant');
+
+  inputElement.addEventListener('change', function () {
+    let value = parseFloat(inputElement.value);
+
+    if (value < 0) {
+      inputElement.value = 0;
+    }
+  });
+</script>
     @endpush

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 use App\Models\Product;
 /*
 |--------------------------------------------------------------------------
@@ -38,5 +39,8 @@ Route::get('/search-product', [ShopController::class, 'search'])->name('search-s
 
 
 Route::get('/all-orders', [OrderController::class, 'allOrders'])->name('all-orders');
+
+Route::get('/product/{id}', [ProductController::class, 'details'])->name('product-details');
+
 
 
