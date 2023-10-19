@@ -9,7 +9,7 @@ class ProductController extends Controller
 {
     public function details($id){
         $product = Product::where('id',$id)->first();
-        return view('cards/product-details', ['product'=>$product, 'comms'=>$product->comments()]);
+        return view('cards/product-details', ['product'=>$product, 'comms'=>$product->comments()->get()]);
     }
     public function add(Request $request)
     {

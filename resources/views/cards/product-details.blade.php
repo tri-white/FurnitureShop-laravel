@@ -74,12 +74,13 @@
 						    Немає відгуків
 						</div>
 					@else
-						@foreach($comms as $row) 
-                            $row_user = $user_class->get_data($row['user_id']);
-                            $row_comment = $comment_class->get_data($row['id']);
-                            include("cards/comment")
+						@foreach($comms as $comm) 
+              @php 
+                $user = App\Models\User::where('id', $comm->user_id)->first();
+              @endphp
+              @include("cards/comment")
 						@endforeach
-             		@endif
+          @endif
       </div>
     </div>
   </div>
