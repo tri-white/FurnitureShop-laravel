@@ -77,7 +77,7 @@
 						@foreach($comms as $row) 
                             $row_user = $user_class->get_data($row['user_id']);
                             $row_comment = $comment_class->get_data($row['id']);
-                            include("comment")
+                            include("cards/comment")
 						@endforeach
              		@endif
       </div>
