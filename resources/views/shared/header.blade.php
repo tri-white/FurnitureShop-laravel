@@ -43,7 +43,7 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   @if(Auth::check())
                     <li><a class="dropdown-item" href="{{ route('profile', ['id'=>Auth::user()->id]) }}">Мій профіль</a></li>
-                    <li><a class="dropdown-item" href="{{ route('cart', ['id'=>Auth::user()->id]) }}">Моя корзина</a></li>
+                    <li><a class="dropdown-item" href="{{ route('cart', ['userid'=>Auth::user()->id]) }}">Моя корзина</a></li>
                     <li><a class="dropdown-item" href="{{ route('wishlist', ['userid'=>Auth::user()->id]) }}">Список побажань</a></li>
                     <li><a class="dropdown-item" href="{{ route('logout') }}">Вихід з профілю</a></li>
                   @else
