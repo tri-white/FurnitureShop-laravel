@@ -36,10 +36,15 @@
               <button class="p-2" type="submit"><i class="fa fa-shopping-cart"></i></a>
             </div>
             <div class="col-lg-3 ps-3 d-inline">
-              @if(Auth::check() && !Auth::check())
-              <a href=""><i class="fa fa-heart" style="color:black;"></i></a>
-              @else
-              <a href=""><i class="fa fa-heart" style="color:red;"></i></a>
+              @if(Auth::check())
+                @php 
+                  $wishcheck = App\Models\Wish::where('user_id', Auth::user()->id)->where('product_id', $product->id)->first();
+                @endphp 
+                @if(!$wishcheck)
+                  <a href="{{ route('add-wish', ['userid'=>Auth::user()->id, 'productid'=>$product->id]) }}"><i class="fa fa-heart" style="color:black;"></i></a>
+                @else
+                  <a href="{{ route('remove-wish', ['userid'=>Auth::user()->id, 'productid'=>$product->id]) }}"><i class="fa fa-heart" style="color:red;"></i></a>
+                @endif
               @endif
             </div>
             @if(Auth::check())

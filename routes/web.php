@@ -46,6 +46,9 @@ Route::get('/product/{id}', [ProductController::class, 'details'])->name('produc
 Route::post('/comment/{userid}/{productid}', [CommentController::class, 'add'])->name('add-comment');
 
 Route::get('/wishlist/{userid}', [WishController::class, 'index'])->name('wishlist');
+Route::get('/wishlist/add/{userid}/{productid}', [WishController::class, 'add'])->name('add-wish');
+Route::get('/wishlist/remove/{userid}/{productid}', [WishController::class, 'remove'])->name('remove-wish');
+
 
 
 
