@@ -18,6 +18,12 @@
           {{ $product->name }}
         </div>
         <div class="col-lg-12 fs-5 ps-3 mt-2">
+          @php 
+            $categor = App\Models\Category::where('id',$product->category_id)->first();
+          @endphp
+          {{ $categor->name }}
+        </div>
+        <div class="col-lg-12 fs-5 ps-3 mt-2">
           {{ $product->price }} грн.
         </div>
 
