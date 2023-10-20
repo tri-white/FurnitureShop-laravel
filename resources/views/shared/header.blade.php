@@ -14,7 +14,7 @@
                 <a class="nav-link text-light" href="{{ route('welcome') }}">Головна</a>
               </li>
               @php 
-                  $page = 2;
+                  $page = 1;
                   $search = "null";
                   $cat = "all";
                   $sort = "price-desc";

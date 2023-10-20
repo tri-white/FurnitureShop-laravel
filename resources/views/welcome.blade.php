@@ -11,7 +11,7 @@
 							<div class="intro-excerpt">
 								<h1>Сучасний інтер'єр <span clsas="d-block"><br>Студія дизайну</span></h1>
 								@php 
-								$page = 2;
+								$page = 1;
                   $search = "null";
                   $cat = "all";
                   $sort = "price-desc";

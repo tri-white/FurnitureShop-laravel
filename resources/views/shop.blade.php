@@ -53,7 +53,10 @@
 											<option value="price-asc" {{ $selectedSort == 'price-asc' ? 'selected' : '' }}>По ціні (↑)</option>
 											<option value="name-desc" {{ $selectedSort == 'name-desc' ? 'selected' : '' }}>По назві (↓)</option>
 											<option value="name-asc" {{ $selectedSort == 'name-asc' ? 'selected' : '' }}>По назві (↑)</option>
-
+											<option value="review-desc" {{ $selectedSort == 'review-desc' ? 'selected' : '' }}>По відгукам (↓)</option>
+											<option value="review-asc" {{ $selectedSort == 'review-asc' ? 'selected' : '' }}>По відгукам (↑)</option>
+											<option value="date-desc" {{ $selectedSort == 'date-desc' ? 'selected' : '' }}>По даті додавання (↓)</option>
+											<option value="date-asc" {{ $selectedSort == 'date-asc' ? 'selected' : '' }}>По даті додавання (↑)</option>
 									</select>
 								</div>
 							</div>
