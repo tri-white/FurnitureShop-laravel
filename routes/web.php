@@ -6,6 +6,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\WishController;
 use App\Models\Product;
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,6 @@ Route::post('/login', [UserController::class, 'login'])->name('login');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 Route::get('/cart/{id}', [UserController::class, 'cart'])->name('cart');
-Route::get('/wishlist/{id}', [UserController::class, 'wishlist'])->name('wishlist');
 
 Route::get('/shop/page={page}/searchKey={searchKey}/category={category}/sort={sort}', [ShopController::class, 'index'])->name('shop');
 Route::post('/search', [ShopController::class, 'search'])->name('search');
@@ -44,6 +44,10 @@ Route::post('/add-product', [ProductController::class, 'add'])->name('add-produc
 Route::get('/product/{id}', [ProductController::class, 'details'])->name('product-details');
 
 Route::post('/comment/{userid}/{productid}', [CommentController::class, 'add'])->name('add-comment');
+
+Route::get('/wishlist/{userid}', [WishController::class, 'index'])->name('wishlist');
+
+
 
 
 
