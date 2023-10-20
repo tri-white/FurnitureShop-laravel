@@ -15,11 +15,19 @@ class CartController extends Controller
 
     public function add(Request $request, $userid, $productid)
     {
-        $wish = new Cart;
-        $wish->user_id = $userid;
-        $wish->product_id = $productid;
-        $wish->quantity = 0;
-        $wish->save();
+        $existingCartItem = Cart::where('user_id', $userid)
+                                ->where('product_id', $productid)
+                                ->first();
+
+        if ($existingCartItem) {
+            return redirect()->back()->with('error', 'Предмет вже знаходиться в корзині.');
+        } else {
+            $cartItem = new Cart;
+            $cartItem->user_id = $userid;
+            $cartItem->product_id = $productid;
+            $cartItem->quantity = $request->input('quantity');
+            $cartItem->save();
+        }
 
         return redirect()->back()->with('success', 'Успішно додано в корзину.');
     }
@@ -29,6 +37,5 @@ class CartController extends Controller
         $cart = Cart::where('user_id', $userid)->where('product_id', $productid)->first();
         $cart->delete();
         return redirect()->back()->with('success', 'Успішно вилучено з корзини');
-
     }
 }

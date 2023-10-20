@@ -8,6 +8,11 @@
         {{ session('success') }}
     </div>
 @endif
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
   <div class="container mt-5">
     <div class="row">
       <div class="col-lg-6">
@@ -28,15 +33,17 @@
         </div>
 
         <div class="col-lg-12 mt-3 d-flex">
-          <form method="POST">
+        @if(Auth::check())
+          <form method="POST" action="{{ route('add-cart',['userid'=>Auth::user()->id, 'productid'=>$product->id]) }}">
+            @csrf
+
             <div class="col-lg-5 ps-3 d-inline">
-              <input id="quant" type="number" name="quantity" step="1" value="0" required> шт.
+              <input id="quant" type="number" name="quantity" step="1" value="1" required> шт.
             </div>
             <div class="col-lg-3 ps-3 d-inline">
               <button class="p-2" type="submit"><i class="fa fa-shopping-cart"></i></a>
             </div>
             <div class="col-lg-3 ps-3 d-inline">
-              @if(Auth::check())
                 @php 
                   $wishcheck = App\Models\Wish::where('user_id', Auth::user()->id)->where('product_id', $product->id)->first();
                 @endphp 
@@ -45,17 +52,14 @@
                 @else
                   <a href="{{ route('remove-wish', ['userid'=>Auth::user()->id, 'productid'=>$product->id]) }}"><i class="fa fa-heart" style="color:red;"></i></a>
                 @endif
-              @endif
             </div>
-            @if(Auth::check())
             @if(Auth::user()->admin==1)
-          <a href="">
-            <i class="fa fa-trash-can ms-3"></i>
-          </a>
-          @endif
+              <a href="">
+                <i class="fa fa-trash-can ms-3"></i>
+              </a>
             @endif
           </form>
-          
+          @endif
 
         </div>
       </div>
@@ -104,8 +108,8 @@
   inputElement.addEventListener('change', function () {
     let value = parseFloat(inputElement.value);
 
-    if (value < 0) {
-      inputElement.value = 0;
+    if (value < 1) {
+      inputElement.value = 1;
     }
   });
 </script>
