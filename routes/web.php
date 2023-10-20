@@ -34,9 +34,9 @@ Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/cart/{id}', [UserController::class, 'cart'])->name('cart');
 Route::get('/wishlist/{id}', [UserController::class, 'wishlist'])->name('wishlist');
 
-Route::get('/shop/page={page}', [ShopController::class, 'index'])->name('shop');
+Route::get('/shop/page={page}/searchKey={searchKey}/category={category}/sort={sort}', [ShopController::class, 'index'])->name('shop');
+Route::post('/search', [ShopController::class, 'search'])->name('search');
 Route::get('/add-product', [ShopController::class, 'addView'])->name('add-product-page');
-Route::get('/search-product', [ShopController::class, 'search'])->name('search-shop');
 
 Route::get('/all-orders', [OrderController::class, 'allOrders'])->name('all-orders');
 

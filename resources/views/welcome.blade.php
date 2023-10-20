@@ -10,8 +10,15 @@
 						<div class="col-lg-5">
 							<div class="intro-excerpt">
 								<h1>Сучасний інтер'єр <span clsas="d-block"><br>Студія дизайну</span></h1>
+								@php 
+								$page = 2;
+                  $search = "null";
+                  $cat = "all";
+                  $sort = "price-desc";
+              @endphp
 								<p class="mb-4">Інноваційні рішення від італійських дизайнерів.</p>
-								<p><a href="{{ route('shop', ['page'=>1]) }}" class="btn btn-secondary me-2">Перейти до покупок</a><a href="#header-of-items" class="btn btn-white-outline">Переглянути</a></p>
+								<p><a href="{{ route('shop', ['page' => $page, 'searchKey'=>$search, 'category'=>$cat,'sort'=>$sort]) }}" class="btn btn-secondary me-2">Перейти до покупок</a><a href="#header-of-items" class="btn btn-white-outline">Переглянути</a></p>
+							
 							</div>
 						</div>
 						<div class="col-lg-7">

@@ -13,8 +13,14 @@
               <li class="nav-item mx-lg-2 mx-md-1 mx-sm-0">
                 <a class="nav-link text-light" href="{{ route('welcome') }}">Головна</a>
               </li>
+              @php 
+                  $page = 2;
+                  $search = "null";
+                  $cat = "all";
+                  $sort = "price-desc";
+              @endphp
               <li class="nav-item mx-lg-2 mx-md-1 mx-sm-0">
-                <a class="nav-link text-light" href="{{ route('shop', ['page' => 1]) }}">Асортимент</a>
+                <a class="nav-link text-light" href="{{ route('shop', ['page' => $page, 'searchKey'=>$search, 'category'=>$cat,'sort'=>$sort]) }}">Асортимент</a>
             </li>
 
               @if(Auth::check())
