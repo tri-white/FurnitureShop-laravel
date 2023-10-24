@@ -6,11 +6,19 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Cart;
+use App\Models\User;
 
 class OrderController extends Controller
 {
     public function allOrders(){
         return redirect()->back();
+    }
+    public function order($orderid)
+    {
+        $order = Order::where('id',$orderid)->first();
+        $user = User::where('id',$order->user_id)->first();
+        $order_items = OrderItem::where('order_id',$orderid)->get();
+        return view('order')->with('order',$order)->with('user',$user)->with('order_items',$order_items);
     }
     public function placeOrder(Request $request, $userid)
     {

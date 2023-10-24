@@ -45,6 +45,7 @@ Route::post('/update-cart/{userid}/{productid}', [CartController::class, 'update
 
 Route::get('/all-orders', [OrderController::class, 'allOrders'])->name('all-orders');
 Route::post('/place-order/{userid}', [OrderController::class, 'placeOrder'])->name('place-order');
+Route::get('/order/{orderid}', [OrderController::class, 'order'])->name('order');
 
 
 
