@@ -13,22 +13,15 @@
           <div class="text-center fs-5 fw-bold">
             Замовлення
           </div>
-          <?php 
-                        if(is_bool($orders)){
-                          echo "<div class='mb-5 text-muted col-lg-12 text-center display-4'>";
-                          echo   "Немає замовлень";
-                          echo "</div>";
-                        }
-                        else{
-                          $i=0;
-                          foreach ($orders as $row) {
-                          $row_order = $orders[$i];
-                          include("profile-order-card-all.php");
-                          $i=$i+1;
-                          }
-                        }     
-                      
-                      ?>
+                        @if(!$orders)
+                          <div class='mb-5 text-muted col-lg-12 text-center display-4'>
+                          Немає замовлень
+                          </div>
+                       @else
+                          @foreach ($orders as $order) 
+                            @include("cards/profile-cards/profile-order-card")
+                          @endforeach
+                       @endif
 
             </div>
         </div>

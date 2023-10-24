@@ -24,13 +24,15 @@
             </li>
 
               @if(Auth::check())
-              <li class="nav-item mx-lg-2 mx-md-1 mx-sm-0">
-                <a class="nav-link text-light" href="{{ route('add-product-page') }}">Додати аcортимент</a>
-              </li>
-              
-              <li class="nav-item mx-lg-2 mx-md-1 mx-sm-0">
-                <a class="nav-link text-light" href="{{ route('all-orders') }}">Всі замовлення</a>
-              </li>
+                @if(Auth::user()->admin === 1)
+                <li class="nav-item mx-lg-2 mx-md-1 mx-sm-0">
+                  <a class="nav-link text-light" href="{{ route('add-product-page') }}">Додати аcортимент</a>
+                </li>
+                
+                <li class="nav-item mx-lg-2 mx-md-1 mx-sm-0">
+                  <a class="nav-link text-light" href="{{ route('all-orders') }}">Всі замовлення</a>
+                </li>
+                @endif
               @endif
               <li class="nav-item mx-lg-2 mx-md-1 mx-sm-0 dropdown">
               <a class="nav-link dropdown-toggle pe-auto text-light" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

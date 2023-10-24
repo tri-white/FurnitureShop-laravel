@@ -11,7 +11,8 @@ use App\Models\User;
 class OrderController extends Controller
 {
     public function allOrders(){
-        return redirect()->back();
+        $orders= Order::all();
+        return view('all-orders')->with('orders', $orders);
     }
     public function order($orderid)
     {
