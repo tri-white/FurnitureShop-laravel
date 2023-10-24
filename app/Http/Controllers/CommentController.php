@@ -21,4 +21,14 @@ class CommentController extends Controller
 
         return redirect()->back()->with('success', 'Успішно додано коментар');
     }
+    public function delete($commentId) {
+        $comment = Comment::find($commentId);
+    
+        if (!$comment) {
+            return false;
+        }
+    
+        $comment->delete();
+        return redirect()->back();
+    }
 }

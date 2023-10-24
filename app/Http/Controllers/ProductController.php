@@ -31,4 +31,18 @@ class ProductController extends Controller
 
         return redirect()->back()->with('success','Успішно додано новий предмет в асортимент');
     }
+    public function delete($productId) {
+        $product = Product::find($productId);
+        
+        if (!$product) {
+            return false;
+        }
+    
+        $product->comments()->delete();
+    
+        $product->delete();
+        return redirect()->route('shop')->with('success','Предмет видалено');
+    }
+    
 }
+

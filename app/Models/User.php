@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Comment;
+use App\Models\Order;
 
 class User extends Authenticatable
 {
@@ -12,8 +14,12 @@ class User extends Authenticatable
 
     public function get_data($id){
     }
-    public function posts()
+    public function comments()
     {
-        return $this->hasMany(Post::class, 'userid');
+        return $this->hasMany(Comment::class, 'user_id');
+    }
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'user_id');
     }
 }

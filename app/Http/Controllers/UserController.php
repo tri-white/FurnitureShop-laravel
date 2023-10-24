@@ -87,10 +87,26 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', 'Успішно змінено логін');
     }
-    public function cart(){
-        return redirect()->back();
+    public function delete($userId) {
+        $user = User::find($userId);
+    
+        if (!$user) {
+            return false;
+        }
+    
+        $user->comments()->delete();
+
+        $orders = $user->orders;
+
+        foreach ($orders as $order) {
+            $order->orderItems()->delete();
+            
+            $order->delete();
+        }
+
+        $user->delete();
+
+        return redirect()->route('welcome')->with('success', 'Користувача видалено');
     }
-    public function wishlish(){
-        return redirect()->back();
-    }
+    
 }

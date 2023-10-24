@@ -51,4 +51,17 @@ class OrderController extends Controller
         return redirect()->back()->with('success', 'Замовлення успішно розміщено');
     }
 
+    public function delete($orderId) {
+        $order = Order::find($orderId);
+    
+        if (!$order) {
+            return false;
+        }
+    
+        $order->orderItems()->delete();
+    
+        $order->delete();
+        return redirect()->back();
+    }
+    
 }
