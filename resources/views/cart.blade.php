@@ -1,8 +1,14 @@
 @extends('shared/layout')
-@push('css')
 
+@push('css')
 @endpush
+
 @section('content')
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 <main>
     <div class="container">
         <div class="row">
@@ -36,24 +42,21 @@
                 <div class="col-12 fs-5 fw-bold">
                     Загальна вартість: {{ $sum }} грн.
                 </div>
-                @if($sum>0)
-                <form action="" method="POST" class="mt-3">
-                    <div class="form-group">
-                        <label for="address">Адреса доставки</label>
-                        <input type="text" class="form-control" id="address" name="address" placeholder="Ваша адреса"
-                            required>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="phone">Тел.</label>
-                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Ваш телефон"
-                            required pattern="[0-9]+" title="Please enter only digits">
-                    </div>
-
-                    <div class="col-12 button mx-auto px-auto mt-3">
-                        <button type="submit" class="btn btn-primary mx-auto align-self-center text-center"
-                            style="width:100%;">Оформити замовлення</button>
-                    </div>
-                </form>
+                @if($sum > 0)
+                    <form action="{{ route('place-order', ['userid'=>Auth::user()->id]) }}" method="POST" class="mt-3">
+                        @csrf
+                        <div class="form-group">
+                            <label for="address">Адреса доставки</label>
+                            <input type="text" class="form-control" id="address" name="address" placeholder="Ваша адреса" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="phone">Тел.</label>
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="Ваш телефон" required pattern="[0-9]+" title="Please enter only digits">
+                        </div>
+                        <div class="col-12 button mx-auto px-auto mt-3">
+                            <button type="submit" class="btn btn-primary mx-auto align-self-center text-center" style="width:100%;">Оформити замовлення</button>
+                        </div>
+                    </form>
                 @endif
             </div>
         </div>
@@ -62,5 +65,4 @@
 @endsection
 
 @push('js')
-
 @endpush

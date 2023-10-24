@@ -9,16 +9,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\WishController;
 use App\Http\Controllers\CartController;
 use App\Models\Product;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+
 
 Route::get('/', function () {
     $products = Product::all();
@@ -37,8 +28,6 @@ Route::get('/shop/page={page}/searchKey={searchKey}/category={category}/sort={so
 Route::post('/search', [ShopController::class, 'search'])->name('search');
 Route::get('/add-product', [ShopController::class, 'addView'])->name('add-product-page');
 
-Route::get('/all-orders', [OrderController::class, 'allOrders'])->name('all-orders');
-
 Route::post('/add-product', [ProductController::class, 'add'])->name('add-product');
 Route::get('/product/{id}', [ProductController::class, 'details'])->name('product-details');
 
@@ -53,6 +42,9 @@ Route::post('/cart/add/{userid}/{productid}', [CartController::class, 'add'])->n
 Route::get('/cart/remove/{userid}/{productid}', [CartController::class, 'remove'])->name('remove-cart');
 Route::post('/update-cart/{userid}/{productid}', [CartController::class, 'updateCartItem'])->name('update-cart');
 
+
+Route::get('/all-orders', [OrderController::class, 'allOrders'])->name('all-orders');
+Route::post('/place-order/{userid}', [OrderController::class, 'placeOrder'])->name('place-order');
 
 
 
