@@ -51,7 +51,7 @@ Route::get('/wishlist/remove/{userid}/{productid}', [WishController::class, 'rem
 Route::get('/cart/{userid}', [CartController::class, 'index'])->name('cart');
 Route::post('/cart/add/{userid}/{productid}', [CartController::class, 'add'])->name('add-cart');
 Route::get('/cart/remove/{userid}/{productid}', [CartController::class, 'remove'])->name('remove-cart');
-
+Route::post('/update-cart/{userid}/{productid}', [CartController::class, 'updateCartItem'])->name('update-cart');
 
 
 

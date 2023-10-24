@@ -32,10 +32,30 @@ class CartController extends Controller
         return redirect()->back()->with('success', 'Успішно додано в корзину.');
     }
 
+    public function updateCartItem(Request $request, $userid, $productid)
+    {
+        $quantity = $request->input('quantity');
+        
+        $cartItem = Cart::where('user_id', $userid)
+                        ->where('product_id', $productid)
+                        ->first();
+
+        if (!$cartItem) {
+            return redirect()->back()->with('error', 'Сталася неочікувана помилка. Не знайдено предмету для оновлення в корзині.');
+        }
+
+        $cartItem->quantity = $quantity;
+        $cartItem->save();
+
+        return redirect()->back();
+    }
+
+
     public function remove($userid, $productid)
     {
         $cart = Cart::where('user_id', $userid)->where('product_id', $productid)->first();
         $cart->delete();
         return redirect()->back()->with('success', 'Успішно вилучено з корзини');
     }
+    
 }
