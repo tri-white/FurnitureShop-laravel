@@ -13,10 +13,13 @@
             </div>
             <h5>{{ $user->username }} </h5>
             @if(Auth::check())
-              @if(Auth::user()->admin === 1 || Auth::user()->id === $user->id)
-              <a class="my-auto me-4 link-dark" href="">
-                <i class="fa fa-trash-can"></i>
-              </a>
+              @if((Auth::user()->admin === 1 && Auth::user()->id !==$user->id) || Auth::user()->id === $user->id)
+              <form method="POST" action = "{{ route('delete-user',$user->id) }}" >
+                        @csrf
+                        <button type="submit" class="my-auto me-4">
+                        <i class="fa fa-trash-can"></i>
+                      </button>
+                      </form>
               @endif
             @endif
           </div>
