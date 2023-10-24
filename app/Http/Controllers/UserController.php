@@ -6,13 +6,21 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Comment;
+use App\Models\Order;
 
 class UserController extends Controller
 {
     public function profile($userid)
     {
         $user = User::where('id',$userid)->first();
-        return view('user/profile')->with('user',$user);
+        $comms = Comment::where('user_id',$userid)->get();
+        $orders= Order::where('user_id',$userid)->get();
+        return view('user/profile')
+    ->with('user', $user)
+    ->with('comms', $comms)
+    ->with('orders', $orders);
+
     }
     public function registrationView()
     {
