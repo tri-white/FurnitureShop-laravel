@@ -53,14 +53,17 @@
                   <a href="{{ route('remove-wish', ['userid'=>Auth::user()->id, 'productid'=>$product->id]) }}"><i class="fa fa-heart" style="color:red;"></i></a>
                 @endif
             </div>
-            @if(Auth::user()->admin==1)
-              <a href="">
-                <i class="fa fa-trash-can ms-3"></i>
-              </a>
-            @endif
+            
           </form>
           @endif
-
+          @if(Auth::user()->admin==1)
+            <form method="POST" action = "{{ route('delete-product',$product->id) }}" >
+                        @csrf
+                        <button type="submit" class="my-auto me-4">
+                        <i class="fa fa-trash-can"></i>
+                      </button>
+                      </form>
+            @endif
         </div>
       </div>
     </div>

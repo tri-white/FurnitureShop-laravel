@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Cart;
+use App\Models\Wish;
 
 class ProductController extends Controller
 {
@@ -40,8 +42,23 @@ class ProductController extends Controller
     
         $product->comments()->delete();
     
+        $carts = Cart::where('product_id', $productId)->get();
+        foreach ($carts as $cart) {
+            $cart->delete();
+        }
+
+        $wishes = Wish::where('product_id', $productId)->get();
+        foreach ($wishes as $wish) {
+            $wish->delete();
+        }
+
         $product->delete();
-        return redirect()->route('shop')->with('success','Предмет видалено');
+
+        $page = 1;
+                  $search = "null";
+                  $cat = "all";
+                  $sort = "price-desc";
+        return redirect()->route('shop', ['page' => $page, 'searchKey'=>$search, 'category'=>$cat,'sort'=>$sort])->with('success','Предмет видалено');
     }
     
 }
