@@ -16,9 +16,12 @@
     <div class="footer-comment align-items-center d-flex justify-content-end align-items-center">
       @if(Auth::check())
         @if(Auth::user()->admin==1)
-        <a class="my-auto me-4 link-dark" href="">
+        <form method="POST" action = "{{ route('delete-comment',$comm->id) }}" >
+          @csrf
+        <button type="submit" class="my-auto me-4">
           <i class="fa fa-trash-can"></i>
-        </a>
+        </button>
+        </form>
         @endif
       @endif
     </div>
