@@ -11,8 +11,6 @@ use App\Http\Controllers\CartController;
 use App\Models\Product;
 
 
-
-
 Route::middleware(['share.user.data'])->group(function () {
     Route::get('/', function () {
         $products = Product::all();
@@ -24,7 +22,7 @@ Route::middleware(['share.user.data'])->group(function () {
     Route::post('/registration', [UserController::class, 'registration'])->name('registration');
     Route::get('/login', [UserController::class, 'loginView'])->name('loginView');
     Route::post('/login', [UserController::class, 'login'])->name('login');
-    
+
     Route::middleware('auth')->group(function() {
         Route::post('/place-order/{userid}', [OrderController::class, 'placeOrder'])->name('place-order');
         Route::get('/order/{orderid}', [OrderController::class, 'order'])->name('order');

@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Comment;
 use App\Models\Order;
-
+use Laravel\Sanctum\HasApiTokens;
+ 
 class User extends Authenticatable
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory;
 
     public function get_data($id){
     }
