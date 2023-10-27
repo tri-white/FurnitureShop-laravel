@@ -48,8 +48,9 @@ class UserController extends Controller
             'username' => $request->input('username'),
             'password' => $request->input('password'),
         ];
+        
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::guard('admin')->attempt($credentials) || Auth::attempt($credentials)) {
             
             return redirect()->route('welcome');
         }

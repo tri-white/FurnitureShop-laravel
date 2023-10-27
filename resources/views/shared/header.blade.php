@@ -36,11 +36,14 @@
               @endif
               <li class="nav-item mx-lg-2 mx-md-1 mx-sm-0 dropdown">
               <a class="nav-link dropdown-toggle pe-auto text-light" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  @if(Auth::check())
-                      {{ Auth::user()->username }}
-                  @else
-                      Профіль
-                  @endif
+              @if(Auth::guard('web')->check())
+                  {{ Auth::guard('web')->user()->username }}
+              @elseif(Auth::guard('admin')->check())
+                  {{ Auth::guard('admin')->user()->username }}
+              @else
+                  Профіль
+              @endif
+
               </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   @if(Auth::check())

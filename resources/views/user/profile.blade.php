@@ -12,7 +12,6 @@
                 class="rounded-circle border border-1 border-dark" alt="Profile Picture">
             </div>
             <h5>{{ $user->username }} </h5>
-            @if(Auth::check())
               @if((Auth::user()->admin === 1 && Auth::user()->id !==$user->id) || Auth::user()->id === $user->id)
               <form method="POST" action = "{{ route('delete-user',$user->id) }}" >
                         @csrf
@@ -21,7 +20,6 @@
                       </button>
                       </form>
               @endif
-            @endif
           </div>
         </div>
 
