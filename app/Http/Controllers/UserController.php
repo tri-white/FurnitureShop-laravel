@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Comment;
 use App\Models\Order;
+use App\Models\Admin;
 
 class UserController extends Controller
 {
@@ -47,10 +48,12 @@ class UserController extends Controller
             'username' => $request->input('username'),
             'password' => $request->input('password'),
         ];
-    
+
         if (Auth::attempt($credentials)) {
+            
             return redirect()->route('welcome');
         }
+        
         return redirect()->back()->with('error', 'Неправильний логін або пароль.');
     }
     public function registration(Request $request)
