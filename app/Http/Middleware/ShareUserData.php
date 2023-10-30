@@ -12,16 +12,19 @@ class ShareUserData
 {
     public function handle($request, Closure $next)
     {
-        if (Auth::guard('web')->check()) {
-            View::share('user', Auth::guard('web')->user());
-            View::share('admin', false);
-        } elseif (Auth::guard('admin')->check()) {
-            View::share('user', Auth::guard('admin')->user());
-            View::share('admin', true);
-        } else {
-            View::share('user', null);
-            View::share('admin', false);
+        if (Auth::check()) {
+            View::share('user', Auth::user());
+            if (Auth::user()->role===1) {
+                View::share('admin', true);
+            } 
+            else{
+                View::share('admin', false);
+            }
         }
+        else {
+                View::share('user', null);
+                View::share('admin', false);
+            }
         
         return $next($request);
     }

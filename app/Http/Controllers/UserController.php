@@ -33,8 +33,8 @@ class UserController extends Controller
     }
     public function logout()
     {
-        Auth::logout();
-
+        Auth::user()->tokens->each->delete();
+        Auth::guard('web')->logout();
         return redirect()->route('welcome');
     }
     public function login(Request $request)
@@ -43,19 +43,24 @@ class UserController extends Controller
             'username' => 'required|string',
             'password' => 'required|string',
         ]);
-        
-        $credentials = [
-            'username' => $request->input('username'),
-            'password' => $request->input('password'),
-        ];
-        
-
-        if (Auth::guard('admin')->attempt($credentials) || Auth::attempt($credentials)) {
-            
-            return redirect()->route('welcome');
+        if(Auth::check()){
+            Auth::user()->tokens->each->delete();
+            Auth::guard('web')->logout();
         }
-        
+        if (Auth::attempt($request->only(['username','password']))) {
+            $user = User::where('username',$request->username)->first();
+            if($user->role===1){
+                $token = $user->createToken("personal-token", ['all'], expiresAt:now()->addDay());
+            }
+            else{
+                $token = $user->createToken("personal-token", expiresAt:now()->addDay());
+            }
+            return redirect()->route('welcome')->with('token', $token->plainTextToken);
+        }
+       
         return redirect()->back()->with('error', 'Неправильний логін або пароль.');
+
+        
     }
     public function registration(Request $request)
     {
