@@ -34,7 +34,7 @@
 
         <div class="col-lg-12 mt-3 d-flex">
         @if(Auth::check())
-          <form method="POST" action="{{ route('add-cart',['userid'=>Auth::user()->id, 'productid'=>$product->id]) }}">
+          <form method="POST" action="{{ route('add-cart',['userid'=>$user->id, 'productid'=>$product->id]) }}">
             @csrf
 
             <div class="col-lg-5 ps-3 d-inline">
@@ -45,18 +45,18 @@
             </div>
             <div class="col-lg-3 ps-3 d-inline">
                 @php 
-                  $wishcheck = App\Models\Wish::where('user_id', Auth::user()->id)->where('product_id', $product->id)->first();
+                  $wishcheck = App\Models\Wish::where('user_id', $user->id)->where('product_id', $product->id)->first();
                 @endphp 
                 @if(!$wishcheck)
-                  <a href="{{ route('add-wish', ['userid'=>Auth::user()->id, 'productid'=>$product->id]) }}"><i class="fa fa-heart" style="color:black;"></i></a>
+                  <a href="{{ route('add-wish', ['userid'=>$user->id, 'productid'=>$product->id]) }}"><i class="fa fa-heart" style="color:black;"></i></a>
                 @else
-                  <a href="{{ route('remove-wish', ['userid'=>Auth::user()->id, 'productid'=>$product->id]) }}"><i class="fa fa-heart" style="color:red;"></i></a>
+                  <a href="{{ route('remove-wish', ['userid'=>$user->id, 'productid'=>$product->id]) }}"><i class="fa fa-heart" style="color:red;"></i></a>
                 @endif
             </div>
             
           </form>
           @endif
-          @if(Auth::user()->admin==1)
+          @if($admin)
             <form method="POST" action = "{{ route('delete-product',$product->id) }}" >
                         @csrf
                         <button type="submit" class="my-auto me-4">
@@ -72,7 +72,7 @@
       <!-- YOUR COMMENT -->
       @if(Auth::check())
       <div class="card-body">
-      <form method="POST" action="{{ route('add-comment', ['userid' => Auth::user()->id, 'productid' => $product->id]) }}" autocomplete="off">
+      <form method="POST" action="{{ route('add-comment', ['userid' => $user->id, 'productid' => $product->id]) }}" autocomplete="off">
         @csrf
         <div class="input-group align-items-center">
             <input name="description" type="text" class="form-control" placeholder="Ваш відгук" aria-label="Add a comment" aria-describedby="comment-button">
@@ -94,7 +94,7 @@
 					@else
 						@foreach($comms as $comm) 
               @php 
-                $user = App\Models\User::where('id', $comm->user_id)->first();
+                $userp = App\Models\User::where('id', $comm->user_id)->first();
               @endphp
               @include("cards/comment")
 						@endforeach

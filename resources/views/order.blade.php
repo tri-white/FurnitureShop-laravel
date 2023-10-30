@@ -15,7 +15,7 @@
           <div class="ms-3 fs-2 mb-3">
             Дані покупця
           </div>
-          <a  class="d-block " href="{{ route('profile', $user->id) }}">Покупець: {{ $user->username }}</a>
+          <a  class="d-block " href="{{ route('profile', $userp->id) }}">Покупець: {{ $userp->username }}</a>
           <a class="d-block text-decoration-none link-dark" >Дата створення: {{ $order->created_at }}</a>
           <a class="d-block text-decoration-none link-dark" >Адреса доставки: {{ $order->address }}</a>
             <a class="d-block text-decoration-none link-dark" >Телефон: {{ $order->phone }}</a>

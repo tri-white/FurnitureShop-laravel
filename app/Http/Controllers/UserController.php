@@ -14,11 +14,11 @@ class UserController extends Controller
 {
     public function profile($userid)
     {
-        $user = User::where('id',$userid)->first();
+        $userp = User::where('id',$userid)->first();
         $comms = Comment::where('user_id',$userid)->get();
         $orders= Order::where('user_id',$userid)->get();
         return view('user/profile')
-    ->with('user', $user)
+    ->with('userp', $userp)
     ->with('comms', $comms)
     ->with('orders', $orders);
 

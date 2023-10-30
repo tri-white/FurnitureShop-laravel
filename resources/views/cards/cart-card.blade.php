@@ -4,7 +4,7 @@
         <h3 class="product-title">{{ $prod->name }}</h3>
         <strong class="product-price">{{ $prod->price }} грн.</strong>
     </a>
-    <form action="{{ route('update-cart', ['userid' => Auth::user()->id, 'productid' => $prod->id]) }}" method="POST">
+    <form action="{{ route('update-cart', ['userid' => $user->id, 'productid' => $prod->id]) }}" method="POST">
         @csrf
         <div class="d-flex align-items-center d-inline-block">
             <input class="amounter" type="number" value="{{ $item->quantity }}" name="quantity" step="1" required min="1">
@@ -13,7 +13,7 @@
               <button type="submit">
                   <i class="fa fa-check"></i>
               </button>
-              <a href="{{ route('remove-cart', ['userid' => Auth::user()->id, 'productid' => $prod->id]) }}">
+              <a href="{{ route('remove-cart', ['userid' => $user->id, 'productid' => $prod->id]) }}">
                   <i class="fa fa-close border border-2 border-dark border px-2"></i>
               </a>
           </div>

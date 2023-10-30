@@ -11,14 +11,16 @@
               <img src="{{ asset('images/user_male.jpg') }}" style="width:100%; height:100%; object-fit: contain;"
                 class="rounded-circle border border-1 border-dark" alt="Profile Picture">
             </div>
-            <h5>{{ $user->username }} </h5>
-              @if((Auth::user()->admin === 1 && Auth::user()->id !==$user->id) || Auth::user()->id === $user->id)
-              <form method="POST" action = "{{ route('delete-user',$user->id) }}" >
+            <h5>{{ $userp->username }} </h5>
+            @if($user)
+              @if(($admin && $user->id !==$userp->id) || $user->id === $userp->id)
+              <form method="POST" action = "{{ route('delete-user',$userp->id) }}" >
                         @csrf
                         <button type="submit" class="my-auto me-4">
                         <i class="fa fa-trash-can"></i>
                       </button>
                       </form>
+              @endif
               @endif
           </div>
         </div>
