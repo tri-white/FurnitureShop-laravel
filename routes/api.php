@@ -26,7 +26,7 @@ Route::middleware(['share.user.data'])->group(function () {
         Route::get('/logout', [UserController::class, 'logout'])->name('logout');
         Route::get('/profile/{id}', [UserController::class, 'profile'])->name('profile');
     });
-    Route::middleware('auth:sanctum','abilities:all')->group(function() {
+    Route::middleware(['auth:sanctum', 'checkAbilities:all'])->group(function() {
         Route::post('/delete-order/{orderId}', [OrderController::class, 'delete'])->name('delete-order');
         Route::get('/wishlist/remove/{userid}/{productid}', [WishController::class, 'remove'])->name('remove-wish');
         Route::post('/delete-product/{productId}', [ProductController::class, 'delete'])->name('delete-product');

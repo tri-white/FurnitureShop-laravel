@@ -3,15 +3,15 @@
 
     @endpush
 @section('content')
+@if(session('message'))
+                        <div class="alert alert-danger">{{ session('message') }}</div>
+                    @endif
   <!-- Start Hero Section -->
   <div class="hero">
 				<div class="container">
 					<div class="row justify-content-between">
 						<div class="col-lg-5">
 							<div class="intro-excerpt">
-								@if($user)
-								<h1> Ура</h1>
-								@endif
 								<h1>Сучасний інтер'єр <span clsas="d-block"><br>Студія дизайну</span></h1>
 								@php 
 								$page = 1;
